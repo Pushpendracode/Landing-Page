@@ -1,64 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css"></link>
-    <title>Landing Page</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="index.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <title>Trabook – Landing Page</title>
 </head>
 <body>
-    <header class="header">
-        <nav class="navbar">
-<ul class="Li-1">
-    <li>Home</li>
-    <li>About</li>
-    <li>Destination</li>
-    <li>Tour</li>
-    <li>Blog</li>
-</ul>
-<button btn-1>Login</button>
-<button btn-2>SignUp</button>
-        </nav>
-    </header>
 
-    <section class="Right">
-         <div>
-        <h1>Get Started your <span>journey</span> with us.</h1>
-        <p>A team of experienced tourism professionals will provide you with the best advidce and tips for your desire place.</p>
-        <button>Discover Now</button>    
-         </div>
-    </section>
-    
-    <section class="bottom">
-        <div>
-            <span>Location<p>Where are you going</p></span>
-            <span>Date <p>when you will go</p></span>
-            <span>Guest <p>Number of Guest</p></span>
-        </div>
-        <button>Explore Now</button>
-    </section>
+<!-- ════════════════════════════
+     HEADER / NAVBAR
+════════════════════════════ -->
+<header class="header">
+  <nav class="navbar">
+    <div class="logo">Trabook 🧳</div>
+    <ul class="nav-links">
+      <li>Home</li>
+      <li>About</li>
+      <li>Destination</li>
+      <li>Tour</li>
+      <li>Blog</li>
+    </ul>
+    <div class="nav-btns">
+      <button class="btn-login">Login</button>
+      <button class="btn-signup">Sign Up</button>
+    </div>
+  </nav>
+</header>
 
-    <section class="TYD">
-<h1>
-<div class="things-header">
+<!-- ════════════════════════════
+     HERO SECTION
+════════════════════════════ -->
+<section class="hero">
+
+  <!-- Left: text -->
+  <div class="hero-left">
+    <h1>Get Started your <br/><span>exciting</span> <em>journey</em><br/> with us.</h1>
+    <p>A Team of experienced tourism professionals will provide
+       you with the best advice and tips for your desire place.</p>
+    <button class="discover-btn">Discover Now</button>
+  </div>
+
+  <!-- Right: visual -->
+  <div class="hero-right">
+
+    <!-- Dotted flight paths -->
+    <svg class="paths-svg" viewBox="0 0 560 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 30 140 Q 180 30 420 90"  stroke="#bbb" stroke-width="1.4" stroke-dasharray="5 7" fill="none"/>
+      <path d="M 260 40 Q 420 0 520 130"  stroke="#bbb" stroke-width="1.4" stroke-dasharray="5 7" fill="none"/>
+      <path d="M 420 90 Q 530 180 510 300" stroke="#bbb" stroke-width="1.2" stroke-dasharray="5 7" fill="none"/>
+    </svg>
+
+    <!-- Airplane icons -->
+    <div class="plane plane-1">
+      <svg viewBox="0 0 52 28" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 14L50 4L42 14L50 24L2 14Z" fill="#bbb"/>
+        <path d="M2 14L18 11V17Z" fill="#ccc"/>
+        <path d="M32 7L38 1L41 5Z" fill="#bbb"/>
+        <path d="M32 21L38 27L41 23Z" fill="#bbb"/>
+      </svg>
+    </div>
+    <div class="plane plane-2">
+      <svg viewBox="0 0 52 28" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 14L50 4L42 14L50 24L2 14Z" fill="#bbb"/>
+        <path d="M2 14L18 11V17Z" fill="#ccc"/>
+        <path d="M32 7L38 1L41 5Z" fill="#bbb"/>
+        <path d="M32 21L38 27L41 23Z" fill="#bbb"/>
+      </svg>
+    </div>
+    <div class="plane plane-3">
+      <svg viewBox="0 0 52 28" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 14L50 4L42 14L50 24L2 14Z" fill="#ccc"/>
+        <path d="M2 14L18 11V17Z" fill="#ddd"/>
+        <path d="M32 7L38 1L41 5Z" fill="#ccc"/>
+        <path d="M32 21L38 27L41 23Z" fill="#ccc"/>
+      </svg>
+    </div>
+
+    <!-- Orange semicircle -->
+    <div class="orange-semi"></div>
+
+    <!-- Traveller photo — exported from Figma -->
+    <img class="traveller-photo" src="Assets/tourist-with-thumb-up__1_-removebg 1 (1).png" alt="Happy traveller with luggage"/>
+
+    <!-- Floating card: Best Tour Awards -->
+    <div class="float-card card-awards">
+      <div class="card-icon awards-icon">🏆</div>
+      <div class="card-text">
+        <strong>Best Tour</strong>
+        <span>Awards</span>
+      </div>
+    </div>
+
+    <!-- Floating card: Explore -->
+    <div class="float-card card-explore">
+      <div class="card-icon map-icon">
+        <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 3C12.48 3 8 7.48 8 13c0 8.25 10 20 10 20s10-11.75 10-20c0-5.52-4.48-10-10-10z" fill="#EA4335"/>
+          <circle cx="18" cy="13" r="4" fill="#fff"/>
+          <path d="M18 3C15.5 3 13.2 4.2 11.6 6h12.8C22.8 4.2 20.5 3 18 3z" fill="#FBBC05"/>
+          <path d="M8 13c0 2 .6 3.8 1.6 5.4L11.6 6C9.5 7.6 8 10.1 8 13z" fill="#34A853"/>
+          <path d="M24.4 6H11.6L9.6 18.4C11.2 22 14.3 24.5 18 24.5s6.8-2.5 8.4-6.1L24.4 6z" fill="#4285F4"/>
+        </svg>
+      </div>
+      <div class="card-text">
+        <strong>Explore</strong>
+        <span>Every corner of<br/>the world with us</span>
+      </div>
+    </div>
+
+    <!-- Floating card: 27K Reviews -->
+    <div class="float-card card-reviews">
+      <div class="card-icon star-icon">⭐</div>
+      <div class="card-text">
+        <strong>27K</strong>
+        <span>Customer Reviewd</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     SEARCH BAR
+════════════════════════════ -->
+<section class="search-bar">
+  <div class="search-inner">
+    <div class="search-field">
+      <label>Location ▾</label>
+      <p>Where are you going</p>
+    </div>
+    <div class="search-field">
+      <label>Date ▾</label>
+      <p>When you will go</p>
+    </div>
+    <div class="search-field">
+      <label>Guest ▾</label>
+      <p>Number of Guest</p>
+    </div>
+    <button class="explore-btn">Explore Now</button>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     THINGS YOU NEED TO DO
+════════════════════════════ -->
+<section class="things-section">
+  <div class="things-header">
     <h2>Things you need <span>to do</span></h2>
     <p>We ensure that you'll embark on a perfectly planned, safe vacation at a price you can afford.</p>
- 
-    <!-- Globe + 2 planes illustration -->
     <svg class="globe-deco" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="72" cy="80" r="38" stroke="#ccc" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
       <path d="M34 80 Q72 62 110 80" stroke="#ccc" stroke-width="1.2" fill="none"/>
       <path d="M34 80 Q72 98 110 80" stroke="#ccc" stroke-width="1.2" fill="none"/>
       <path d="M72 42 Q88 60 72 118" stroke="#ccc" stroke-width="1.2" fill="none"/>
       <path d="M72 42 Q56 60 72 118" stroke="#ccc" stroke-width="1.2" fill="none"/>
-      <!-- Plane 1 -->
       <g transform="translate(4, 10) rotate(-30)">
         <path d="M0 7 L30 2 L26 7 L30 12 L0 7Z" fill="#bbb"/>
         <path d="M0 7 L10 5.5V8.5L0 7Z" fill="#bbb"/>
         <path d="M18 4.5 L22 0 L24 3Z" fill="#bbb"/>
         <path d="M18 9.5 L22 14 L24 11Z" fill="#bbb"/>
       </g>
-      <!-- Plane 2 -->
       <g transform="translate(62, 4) rotate(-15)">
         <path d="M0 5 L22 1 L19 5 L22 9 L0 5Z" fill="#bbb"/>
         <path d="M0 5 L8 4V6L0 5Z" fill="#bbb"/>
@@ -67,11 +170,8 @@
       </g>
     </svg>
   </div>
- 
-  <!-- ── Cards ── -->
+
   <div class="cards-grid">
- 
-    <!-- Card 1: Sign Up -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,8 +186,6 @@
       <h3>Sign Up</h3>
       <p>Completes all the work associated with planning and processing</p>
     </div>
- 
-    <!-- Card 2: Worth of Money -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -102,128 +200,86 @@
       <h3>Worth of Money</h3>
       <p>After successful access then book from exclusive deals &amp; pricing</p>
     </div>
- 
-    <!-- Card 3: Exciting Travel -->
     <div class="card">
       <div class="card-icon">
         <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M28 8C20.27 8 14 14.27 14 22c0 11 14 26 14 26s14-15 14-26c0-7.73-6.27-14-14-14z"
-                stroke="#e6a817" stroke-width="2" fill="none"/>
+          <path d="M28 8C20.27 8 14 14.27 14 22c0 11 14 26 14 26s14-15 14-26c0-7.73-6.27-14-14-14z" stroke="#e6a817" stroke-width="2" fill="none"/>
           <circle cx="28" cy="22" r="5" stroke="#e6a817" stroke-width="2" fill="none"/>
-          <path d="M25.5 21 Q28 18.5 30.5 21 Q33 23.5 28 27 Q23 23.5 25.5 21Z"
-                stroke="#e6a817" stroke-width="1.4" fill="none"/>
+          <path d="M25.5 21 Q28 18.5 30.5 21 Q33 23.5 28 27 Q23 23.5 25.5 21Z" stroke="#e6a817" stroke-width="1.4" fill="none"/>
         </svg>
       </div>
       <h3>Exciting Travel</h3>
       <p>Start and explore a wide range of exciting travel experience.</p>
     </div>
- 
   </div>
 </section>
+
+<!-- ════════════════════════════
+     EXCLUSIVE DEALS
+════════════════════════════ -->
 <section class="deals-section">
   <div class="section-header">
     <h2>Exclusive <span>deals &amp; discounts</span></h2>
     <p>Discover our fantastic early booking discounts<br/>&amp; start planning your journey.</p>
   </div>
- 
   <div class="deals-slider">
-    <!-- Card 1 -->
     <div class="deal-card">
       <div class="deal-img">
         <img src="https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=400&q=80" alt="Madrid"/>
       </div>
       <div class="deal-info">
-        <div class="deal-title">
-          <h3>Madrid</h3>
-          <span class="rating"><span class="star">★</span> 4.8</span>
-        </div>
-        <div class="deal-price">
-          <span class="location">📍 Spain</span>
-          <span class="old-price">$950</span>
-          <span class="new-price">$850</span>
-        </div>
+        <div class="deal-title"><h3>Madrid</h3><span class="rating"><span class="star">★</span> 4.8</span></div>
+        <div class="deal-price"><span class="location">📍 Spain</span><span class="old-price">$950</span><span class="new-price">$850</span></div>
       </div>
     </div>
- 
-    <!-- Card 2 (active / highlighted) -->
     <div class="deal-card active">
       <div class="deal-img">
         <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Firenze"/>
         <button class="book-btn">Book Now</button>
       </div>
       <div class="deal-info">
-        <div class="deal-title">
-          <h3>Firenze</h3>
-          <span class="rating"><span class="star">★</span> 4.5</span>
-        </div>
-        <div class="deal-price">
-          <span class="location">📍 Italy</span>
-          <span class="old-price">$850</span>
-          <span class="new-price">$750</span>
-        </div>
+        <div class="deal-title"><h3>Firenze</h3><span class="rating"><span class="star">★</span> 4.5</span></div>
+        <div class="deal-price"><span class="location">📍 Italy</span><span class="old-price">$850</span><span class="new-price">$750</span></div>
       </div>
     </div>
- 
-    <!-- Card 3 -->
     <div class="deal-card">
       <div class="deal-img">
         <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=400&q=80" alt="Paris"/>
       </div>
       <div class="deal-info">
-        <div class="deal-title">
-          <h3>Paris</h3>
-          <span class="rating"><span class="star">★</span> 4.4</span>
-        </div>
-        <div class="deal-price">
-          <span class="location">📍 France</span>
-          <span class="old-price">$699</span>
-          <span class="new-price">$599</span>
-        </div>
+        <div class="deal-title"><h3>Paris</h3><span class="rating"><span class="star">★</span> 4.4</span></div>
+        <div class="deal-price"><span class="location">📍 France</span><span class="old-price">$699</span><span class="new-price">$599</span></div>
       </div>
     </div>
- 
-    <!-- Card 4 -->
     <div class="deal-card">
       <div class="deal-img">
         <img src="https://images.unsplash.com/photo-1520986606214-8b456906c813?w=400&q=80" alt="London"/>
       </div>
       <div class="deal-info">
-        <div class="deal-title">
-          <h3>London</h3>
-          <span class="rating"><span class="star">★</span> 4.8</span>
-        </div>
-        <div class="deal-price">
-          <span class="location">📍 UK</span>
-          <span class="old-price">$850</span>
-          <span class="new-price">$850</span>
-        </div>
+        <div class="deal-title"><h3>London</h3><span class="rating"><span class="star">★</span> 4.8</span></div>
+        <div class="deal-price"><span class="location">📍 UK</span><span class="old-price">$850</span><span class="new-price">$850</span></div>
       </div>
     </div>
   </div>
- 
-  <!-- Slider arrows -->
   <div class="slider-arrows">
     <button class="arrow-btn">&#8592;</button>
     <button class="arrow-btn active">&#8594;</button>
   </div>
 </section>
- 
- 
-<!-- ═══════════════════════════════════════════════
-     SECTION 2 — Best Vacation Plan
-════════════════════════════════════════════════ -->
+
+<!-- ════════════════════════════
+     BEST VACATION PLAN
+════════════════════════════ -->
 <section class="vacation-section">
   <div class="vacation-header">
     <div class="vacation-title-block">
       <h2>Best <span>vacation plan</span></h2>
       <p>Plan your perfect vacation with our travel agency. Choose<br/>among hundreds of all-inclusive offers!</p>
     </div>
-    <!-- Palm tree decoration -->
     <svg class="palm-deco" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M40 90 Q42 60 50 40" stroke="#ccc" stroke-width="2" fill="none"/>
       <path d="M50 40 Q30 20 10 30 Q25 20 40 35" stroke="#ccc" stroke-width="1.8" fill="none"/>
       <path d="M50 40 Q55 15 75 10 Q65 20 55 38" stroke="#ccc" stroke-width="1.8" fill="none"/>
-      <path d="M50 40 Q35 25 20 38 Q30 25 48 40" stroke="#ccc" stroke-width="1.5" fill="none"/>
       <path d="M80 90 Q82 62 90 42" stroke="#ccc" stroke-width="2" fill="none"/>
       <path d="M90 42 Q75 22 58 28 Q72 18 88 36" stroke="#ccc" stroke-width="1.8" fill="none"/>
       <path d="M90 42 Q100 18 115 15 Q105 24 92 42" stroke="#ccc" stroke-width="1.8" fill="none"/>
@@ -233,65 +289,34 @@
       <button class="arrow-btn active">&#8594;</button>
     </div>
   </div>
- 
   <div class="vacation-grid">
-    <!-- Card 1 -->
     <div class="vac-card">
-      <div class="vac-img">
-        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=500&q=80" alt="Rome"/>
-      </div>
+      <div class="vac-img"><img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=500&q=80" alt="Rome"/></div>
       <div class="vac-info">
-        <div class="vac-top">
-          <h3>Rome, Italy</h3>
-          <span class="vac-price">$5,42k</span>
-        </div>
-        <div class="vac-bottom">
-          <span class="trip-days">✈ 10 Days Trip</span>
-          <span class="rating"><span class="star">★</span> 4.8</span>
-        </div>
+        <div class="vac-top"><h3>Rome, Italy</h3><span class="vac-price">$5,42k</span></div>
+        <div class="vac-bottom"><span class="trip-days">✈ 10 Days Trip</span><span class="rating"><span class="star">★</span> 4.8</span></div>
       </div>
     </div>
- 
-    <!-- Card 2 -->
     <div class="vac-card">
-      <div class="vac-img">
-        <img src="https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=500&q=80" alt="London"/>
-      </div>
+      <div class="vac-img"><img src="https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=500&q=80" alt="London"/></div>
       <div class="vac-info">
-        <div class="vac-top">
-          <h3>London, UK</h3>
-          <span class="vac-price">$2,42k</span>
-        </div>
-        <div class="vac-bottom">
-          <span class="trip-days">✈ 07 Days Trip</span>
-          <span class="rating"><span class="star">★</span> 4.7</span>
-        </div>
+        <div class="vac-top"><h3>London, UK</h3><span class="vac-price">$2,42k</span></div>
+        <div class="vac-bottom"><span class="trip-days">✈ 07 Days Trip</span><span class="rating"><span class="star">★</span> 4.7</span></div>
       </div>
     </div>
- 
-    <!-- Card 3 -->
     <div class="vac-card">
-      <div class="vac-img">
-        <img src="https://images.unsplash.com/photo-1589158015791-45a9a6930c27?w=500&q=80" alt="Osaka"/>
-      </div>
+      <div class="vac-img"><img src="https://images.unsplash.com/photo-1589158015791-45a9a6930c27?w=500&q=80" alt="Osaka"/></div>
       <div class="vac-info">
-        <div class="vac-top">
-          <h3>Osaka, Japan</h3>
-          <span class="vac-price">$5,42k</span>
-        </div>
-        <div class="vac-bottom">
-          <span class="trip-days">✈ 10 Days Trip</span>
-          <span class="rating"><span class="star">★</span> 4.8</span>
-        </div>
+        <div class="vac-top"><h3>Osaka, Japan</h3><span class="vac-price">$5,42k</span></div>
+        <div class="vac-bottom"><span class="trip-days">✈ 10 Days Trip</span><span class="rating"><span class="star">★</span> 4.8</span></div>
       </div>
     </div>
   </div>
 </section>
- 
- 
-<!-- ═══════════════════════════════════════════════
-     SECTION 3 — Testimonials
-════════════════════════════════════════════════ -->
+
+<!-- ════════════════════════════
+     TESTIMONIALS
+════════════════════════════ -->
 <section class="testimonial-section">
   <div class="testimonial-left">
     <h2>What people say<br/><span>about us.</span></h2>
@@ -301,9 +326,7 @@
       <button class="arrow-btn active">&#8594;</button>
     </div>
   </div>
- 
   <div class="testimonial-right">
-    <!-- Airplane deco -->
     <svg class="plane-deco" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="110" cy="70" r="42" stroke="#ddd" stroke-width="1.2" stroke-dasharray="4 5" fill="none"/>
       <g transform="translate(55,20) rotate(-20)">
@@ -317,8 +340,6 @@
         <path d="M12 7 L15 10 L17 8Z" fill="#ccc"/>
       </g>
     </svg>
- 
-    <!-- Active testimonial card -->
     <div class="test-card active-card">
       <div class="test-avatar">
         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mike Taylor"/>
@@ -327,86 +348,63 @@
       <strong class="test-name">Mike Taylor</strong>
       <span class="test-location">Lahore, Pakistan</span>
     </div>
- 
-    <!-- Ghost / next card -->
     <div class="test-card ghost-card">
       <strong class="test-name">Chris Thomas</strong>
       <span class="test-location">CEO of Red Button</span>
     </div>
   </div>
 </section>
- 
- 
-<!-- ═══════════════════════════════════════════════
-     SECTION 4 — Latest Blog
-════════════════════════════════════════════════ -->
+
+<!-- ════════════════════════════
+     LATEST BLOG
+════════════════════════════ -->
 <section class="blog-section">
   <div class="section-header">
     <h2>Get update with <span>latest blog</span></h2>
   </div>
- 
   <div class="blog-grid">
     <div class="blog-card">
-      <div class="blog-img">
-        <img src="https://images.unsplash.com/photo-1467226632440-65f0b4957563?w=400&q=80" alt="Blog 1"/>
-      </div>
+      <div class="blog-img"><img src="https://images.unsplash.com/photo-1467226632440-65f0b4957563?w=400&q=80" alt="Blog 1"/></div>
       <h4>The Amazing Difference a Year of Travelling .</h4>
       <span class="blog-date">July 27, 2021</span>
     </div>
- 
     <div class="blog-card">
-      <div class="blog-img">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80" alt="Blog 2"/>
-      </div>
+      <div class="blog-img"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80" alt="Blog 2"/></div>
       <h4>Travel far enough, you meet yourself.</h4>
       <span class="blog-date">July 27, 2021</span>
     </div>
- 
     <div class="blog-card">
-      <div class="blog-img">
-        <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a4d4a?w=400&q=80" alt="Blog 3"/>
-      </div>
+      <div class="blog-img"><img src="https://images.unsplash.com/photo-1516026672322-bc52d61a4d4a?w=400&q=80" alt="Blog 3"/></div>
       <h4>How to Save Money While Visiting Africa .</h4>
       <span class="blog-date">July 27, 2021</span>
     </div>
- 
     <div class="blog-card">
-      <div class="blog-img">
-        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80" alt="Blog 4"/>
-      </div>
+      <div class="blog-img"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80" alt="Blog 4"/></div>
       <h4>Reflections on 5 Months of Travel: Time to Hang</h4>
       <span class="blog-date">July 27, 2021</span>
     </div>
   </div>
- 
-  <!-- Dots -->
   <div class="blog-dots">
     <span class="dot"></span>
     <span class="dot active"></span>
     <span class="dot"></span>
   </div>
 </section>
- 
- 
-<!-- ═══════════════════════════════════════════════
-     SECTION 5 — Subscribe + Footer
-════════════════════════════════════════════════ -->
+
+<!-- ════════════════════════════
+     SUBSCRIBE
+════════════════════════════ -->
 <section class="subscribe-section">
   <div class="subscribe-box">
-    <!-- Decorative rings -->
     <div class="subscribe-rings"></div>
-    <!-- Palm tree deco -->
     <svg class="subscribe-palm" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M35 88 Q37 58 45 38" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
       <path d="M45 38 Q28 18 8 26 Q22 16 40 32" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" fill="none"/>
       <path d="M45 38 Q50 12 70 8 Q58 18 48 36" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" fill="none"/>
-      <path d="M45 38 Q30 22 15 35 Q28 22 44 38" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none"/>
-      <ellipse cx="40" cy="90" rx="8" ry="3" fill="rgba(255,255,255,0.3)"/>
       <path d="M70 88 Q72 60 80 42" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
       <path d="M80 42 Q65 22 48 28 Q62 18 78 36" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" fill="none"/>
       <path d="M80 42 Q90 18 100 15 Q92 24 82 42" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" fill="none"/>
     </svg>
- 
     <h2>Subscribe and get exclusive<br/>deals &amp; offer</h2>
     <div class="subscribe-form">
       <div class="email-input">
@@ -417,7 +415,10 @@
     </div>
   </div>
 </section>
- 
+
+<!-- ════════════════════════════
+     FOOTER
+════════════════════════════ -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
@@ -429,7 +430,6 @@
         <a href="#" class="social-icon">𝕏</a>
       </div>
     </div>
- 
     <div class="footer-links">
       <div class="footer-col">
         <h4>Company</h4>
@@ -452,14 +452,11 @@
       </div>
     </div>
   </div>
- 
   <div class="footer-bottom">
     <span>Copyright, Trabook 2022. All rights reserved.</span>
     <span>Terms &amp; Conditions</span>
   </div>
 </footer>
 
-</h1>
-    </section>
 </body>
 </html>
