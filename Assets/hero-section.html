@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hero Section</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ── Main wrapper ───────────────────────────── */
+    .hero-visual {
+      position: relative;
+      width: 620px;
+      height: 620px;
+    }
+
+    /* ── Orange semicircle base ─────────────────── */
+    .orange-base {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 520px;
+      height: 280px;
+      background: #f26522;
+      border-radius: 300px 300px 0 0;
+      z-index: 1;
+    }
+
+    /* ── Traveller image placeholder ────────────── */
+    .traveller {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 460px;
+      height: 560px;
+      z-index: 2;
+
+      /* Replace src with your actual image */
+      background: url('https://i.imgur.com/placeholder.png') center/cover no-repeat;
+
+      /* Stylised silhouette fallback — remove when you have the real image */
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    /* Silhouette SVG used as fallback */
+    .traveller svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── Airplane paths (SVG overlay) ───────────── */
+    .airplane-paths {
+      position: absolute;
+      inset: -60px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .airplane-paths svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Animated airplane icons */
+    .plane {
+      position: absolute;
+      z-index: 0;
+      opacity: 0.55;
+    }
+
+    .plane svg { fill: #555; }
+
+    .plane-1 {
+      top: 10px; left: 40px;
+      animation: drift1 12s ease-in-out infinite;
+    }
+    .plane-2 {
+      top: 30px; right: 80px;
+      animation: drift2 14s ease-in-out infinite 2s;
+    }
+    .plane-3 {
+      top: 130px; right: 20px;
+      animation: drift3 10s ease-in-out infinite 1s;
+    }
+
+    @keyframes drift1 {
+      0%,100% { transform: translate(0,0) rotate(-10deg); }
+      50%      { transform: translate(8px,-10px) rotate(-10deg); }
+    }
+    @keyframes drift2 {
+      0%,100% { transform: translate(0,0) rotate(-5deg); }
+      50%      { transform: translate(-6px,-8px) rotate(-5deg); }
+    }
+    @keyframes drift3 {
+      0%,100% { transform: translate(0,0) rotate(15deg); }
+      50%      { transform: translate(6px,8px) rotate(15deg); }
+    }
+
+    /* ── Floating cards ─────────────────────────── */
+    .card {
+      position: absolute;
+      background: #fff;
+      border-radius: 16px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+      z-index: 10;
+      animation: floatCard 5s ease-in-out infinite;
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .card-text strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.3;
+    }
+
+    .card-text span {
+      font-size: 0.78rem;
+      color: #888;
+      font-weight: 400;
+    }
+
+    /* Card positions */
+    .card-award {
+      top: 80px;
+      left: -30px;
+      animation-delay: 0s;
+      animation-duration: 6s;
+    }
+
+    .card-explore {
+      top: 46%;
+      right: -40px;
+      animation-delay: 1s;
+      animation-duration: 7s;
+    }
+
+    .card-reviews {
+      bottom: 130px;
+      left: -50px;
+      animation-delay: 2s;
+      animation-duration: 5.5s;
+    }
+
+    @keyframes floatCard {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    /* ── Google-map-pin SVG icon ────────────────── */
+    .map-pin { width: 36px; height: 36px; }
+
+    /* ── Dotted flight path (SVG) ───────────────── */
+    .flight-svg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero-visual">
+
+  <!-- ── Dotted flight paths ── -->
+  <svg class="flight-svg" viewBox="0 0 620 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Path 1: top arc left to right -->
+    <path d="M 60 180 Q 200 40 480 100"
+          stroke="#666" stroke-width="1.5"
+          stroke-dasharray="6 8" fill="none" opacity="0.6"/>
+    <!-- Path 2: upper-right curve -->
+    <path d="M 300 60 Q 480 10 580 160"
+          stroke="#666" stroke-width="1.5"
+          stroke-dasharray="6 8" fill="none" opacity="0.5"/>
+    <!-- Path 3: right side arc -->
+    <path d="M 480 100 Q 600 200 560 340"
+          stroke="#666" stroke-width="1.5"
+          stroke-dasharray="6 8" fill="none" opacity="0.4"/>
+  </svg>
+
+  <!-- ── Airplane icons ── -->
+  <div class="plane plane-1">
+    <svg width="52" height="28" viewBox="0 0 52 28" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 14L50 4L42 14L50 24L2 14ZM2 14L20 11V17L2 14Z" fill="#555"/>
+    </svg>
+  </div>
+  <div class="plane plane-2">
+    <svg width="46" height="24" viewBox="0 0 52 28" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 14L50 4L42 14L50 24L2 14ZM2 14L20 11V17L2 14Z" fill="#555"/>
+    </svg>
+  </div>
+  <div class="plane plane-3">
+    <svg width="38" height="20" viewBox="0 0 52 28" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 14L50 4L42 14L50 24L2 14ZM2 14L20 11V17L2 14Z" fill="#555"/>
+    </svg>
+  </div>
+
+  <!-- ── Orange base ── -->
+  <div class="orange-base"></div>
+
+  <!-- ── Traveller (replace with real <img>) ── -->
+  <div class="traveller">
+    <!--
+      USAGE: replace this entire div with:
+      <img src="your-traveller.png" alt="Traveller" style="
+        position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+        width:460px; z-index:2; object-fit:contain;
+      "/>
+    -->
+    <!-- Stylised placeholder silhouette -->
+    <svg viewBox="0 0 460 560" xmlns="http://www.w3.org/2000/svg" opacity="0.18">
+      <!-- head -->
+      <ellipse cx="230" cy="110" rx="65" ry="75" fill="#fff"/>
+      <!-- hat brim -->
+      <ellipse cx="230" cy="72" rx="90" ry="22" fill="#fff"/>
+      <!-- body -->
+      <path d="M160 200 Q230 170 300 200 L320 370 Q230 390 140 370Z" fill="#fff"/>
+      <!-- legs crossed (sitting) -->
+      <path d="M160 370 Q120 430 80 480 Q200 500 230 460" fill="#fff"/>
+      <path d="M300 370 Q340 430 380 480 Q260 500 230 460" fill="#fff"/>
+      <!-- luggage -->
+      <rect x="320" y="260" width="90" height="130" rx="12" fill="#fff" opacity="0.6"/>
+      <rect x="350" y="245" width="30" height="18" rx="6" fill="#fff" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- ── Card: Best Tour Awards ── -->
+  <div class="card card-award">
+    <div class="card-icon">🏆</div>
+    <div class="card-text">
+      <strong>Best Tour<br/>Awards</strong>
+    </div>
+  </div>
+
+  <!-- ── Card: Explore ── -->
+  <div class="card card-explore">
+    <div class="card-icon">
+      <!-- Google Maps pin SVG -->
+      <svg class="map-pin" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="20" fill="#fff"/>
+        <path d="M20 6C14.48 6 10 10.48 10 16c0 7.5 10 18 10 18s10-10.5 10-18c0-5.52-4.48-10-10-10z" fill="#EA4335"/>
+        <circle cx="20" cy="16" r="4" fill="#fff"/>
+        <path d="M20 6C17.2 6 14.8 7.6 13.2 10h13.6C25.2 7.6 22.8 6 20 6z" fill="#FBBC05"/>
+        <path d="M10 16c0 2.2.7 4.2 1.9 5.9L13.2 10A9.96 9.96 0 0010 16z" fill="#34A853"/>
+        <path d="M28.8 10H13.2l-1.3 11.9C13.6 25 16.6 27 20 27s6.4-2 8.1-5.1L28.8 10z" fill="#4285F4"/>
+      </svg>
+    </div>
+    <div class="card-text">
+      <strong>Explore</strong>
+      <span>Every corner of<br/>the world with us</span>
+    </div>
+  </div>
+
+  <!-- ── Card: 27K Reviews ── -->
+  <div class="card card-reviews">
+    <div class="card-icon">⭐</div>
+    <div class="card-text">
+      <strong>27K</strong>
+      <span>Customer Reviewed</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
