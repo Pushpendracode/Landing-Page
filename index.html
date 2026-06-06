@@ -3,28 +3,133 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="index.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange: '#f26522',
+            'orange-dark': '#d95a1a',
+            dark: '#1a1a1a',
+            muted: '#999999',
+            'light-bg': '#f7f8fc',
+            bg: '#f7f5f2',
+          },
+          fontFamily: {
+            playfair: ['"Playfair Display"', 'serif'],
+            sans: ['"DM Sans"', 'sans-serif'],
+          },
+          borderRadius: {
+            xl2: '16px',
+            '3xl': '24px',
+          },
+          keyframes: {
+            fadeUp: {
+              from: { opacity: '0', transform: 'translateY(28px)' },
+              to:   { opacity: '1', transform: 'translateY(0)' },
+            },
+            driftPlane: {
+              '0%,100%': { transform: 'translateY(0)' },
+              '50%':     { transform: 'translateY(-12px)' },
+            },
+            floatA: {
+              '0%,100%': { transform: 'translateY(0)' },
+              '50%':     { transform: 'translateY(-10px)' },
+            },
+            floatB: {
+              '0%,100%': { transform: 'translateY(0)' },
+              '50%':     { transform: 'translateY(-8px)' },
+            },
+            floatC: {
+              '0%,100%': { transform: 'translateY(0)' },
+              '50%':     { transform: 'translateY(-12px)' },
+            },
+          },
+          animation: {
+            fadeUp:     'fadeUp 0.8s ease both',
+            fadeUpSlow: 'fadeUp 0.9s 0.15s ease both',
+            fadeUpLate: 'fadeUp 1s 0.3s ease both',
+            driftPlane1: 'driftPlane 10s ease-in-out infinite',
+            driftPlane2: 'driftPlane 12s ease-in-out 1.5s infinite',
+            driftPlane3: 'driftPlane 9s ease-in-out 3s infinite',
+            floatA: 'floatA 6s ease-in-out infinite',
+            floatB: 'floatB 7s ease-in-out 1s infinite',
+            floatC: 'floatC 5.5s ease-in-out 2s infinite',
+          },
+          boxShadow: {
+            sm2: '0 4px 20px rgba(0,0,0,0.07)',
+            md2: '0 8px 32px rgba(0,0,0,0.12)',
+            orange: '0 4px 14px rgba(242,101,34,0.35)',
+            'orange-lg': '0 8px 22px rgba(242,101,34,0.35)',
+            deal: '0 8px 36px rgba(242,101,34,0.18)',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Overrides that are hard to express purely in Tailwind utilities */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: #f26522;
+      border-radius: 2px;
+      transition: width 0.25s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .card-circle::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; right: -20px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 28px solid rgba(242,101,34,0.07);
+      pointer-events: none;
+    }
+
+    .subscribe-rings,
+    .subscribe-rings::before,
+    .subscribe-rings::after {
+      content: '';
+      position: absolute;
+      left: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      pointer-events: none;
+    }
+    .subscribe-rings        { width: 280px; height: 280px; }
+    .subscribe-rings::before { width: 360px; height: 360px; left: -120px; }
+    .subscribe-rings::after  { width: 440px; height: 440px; left: -160px; }
+
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  </style>
   <title>Trabook – Landing Page</title>
 </head>
-<body>
+<body class="font-sans bg-bg text-dark overflow-x-hidden">
 
 <!-- ════════════════════════════
      HEADER / NAVBAR
 ════════════════════════════ -->
-<header class="header">
-  <nav class="navbar">
-    <div class="logo">Trabook 🧳</div>
-    <ul class="nav-links">
-      <li>Home</li>
-      <li>About</li>
-      <li>Destination</li>
-      <li>Tour</li>
-      <li>Blog</li>
+<header class="sticky top-0 z-50 bg-bg border-b border-black/[.06] px-[6vw]">
+  <nav class="flex items-center h-[72px] gap-10">
+    <div class="font-playfair text-[1.4rem] font-extrabold text-dark tracking-tight mr-auto cursor-pointer">Trabook 🧳</div>
+    <ul class="hidden md:flex list-none gap-9 mr-auto">
+      <li class="nav-link text-[0.95rem] font-medium text-dark cursor-pointer relative pb-[2px] hover:text-orange transition-colors duration-200">Home</li>
+      <li class="nav-link text-[0.95rem] font-medium text-dark cursor-pointer relative pb-[2px] hover:text-orange transition-colors duration-200">About</li>
+      <li class="nav-link text-[0.95rem] font-medium text-dark cursor-pointer relative pb-[2px] hover:text-orange transition-colors duration-200">Destination</li>
+      <li class="nav-link text-[0.95rem] font-medium text-dark cursor-pointer relative pb-[2px] hover:text-orange transition-colors duration-200">Tour</li>
+      <li class="nav-link text-[0.95rem] font-medium text-dark cursor-pointer relative pb-[2px] hover:text-orange transition-colors duration-200">Blog</li>
     </ul>
-    <div class="nav-btns">
-      <button class="btn-login">Login</button>
-      <button class="btn-signup">Sign Up</button>
+    <div class="flex items-center gap-3">
+      <button class="bg-transparent border-none text-orange font-sans text-[0.95rem] font-semibold cursor-pointer px-4 py-[10px] hover:opacity-75 transition-opacity">Login</button>
+      <button class="bg-orange border-2 border-orange text-white font-sans text-[0.95rem] font-semibold cursor-pointer px-[26px] py-[10px] rounded-lg shadow-orange hover:bg-orange-dark hover:border-orange-dark hover:-translate-y-px transition-all duration-200">Sign Up</button>
     </div>
   </nav>
 </header>
@@ -32,28 +137,33 @@
 <!-- ════════════════════════════
      HERO SECTION
 ════════════════════════════ -->
-<section class="hero">
+<section class="flex items-center justify-between px-[6vw] pt-[60px] pb-[40px] gap-10 min-h-[calc(100vh-72px-110px)]">
 
   <!-- Left: text -->
-  <div class="hero-left">
-    <h1>Get Started your <br/><span>exciting</span> <em>journey</em><br/> with us.</h1>
-    <p>A Team of experienced tourism professionals will provide
-       you with the best advice and tips for your desire place.</p>
-    <button class="discover-btn">Discover Now</button>
+  <div class="flex-none max-w-[480px] animate-fadeUp">
+    <h1 class="font-playfair text-[clamp(2.2rem,4vw,3.4rem)] font-extrabold text-dark leading-[1.15] tracking-tight mb-[22px]">
+      Get Started your <br/><span class="text-dark">exciting</span> <em class="text-orange italic font-playfair">journey</em><br/> with us.
+    </h1>
+    <p class="text-[0.95rem] text-muted leading-[1.8] mb-9">
+      A Team of experienced tourism professionals will provide you with the best advice and tips for your desire place.
+    </p>
+    <button class="px-9 py-[14px] border-2 border-orange rounded-[10px] bg-transparent text-orange font-sans text-base font-semibold cursor-pointer tracking-wide hover:bg-orange hover:text-white hover:-translate-y-[2px] hover:shadow-orange-lg transition-all duration-200">
+      Discover Now
+    </button>
   </div>
 
   <!-- Right: visual -->
-  <div class="hero-right">
+  <div class="relative flex-none w-[560px] h-[520px] animate-fadeUpSlow max-lg:w-[460px] max-lg:h-[460px] max-md:w-full max-md:h-[400px]">
 
     <!-- Dotted flight paths -->
-    <svg class="paths-svg" viewBox="0 0 560 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="absolute -inset-10 w-[calc(100%+80px)] h-[calc(100%+80px)] z-0 pointer-events-none" viewBox="0 0 560 480" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M 30 140 Q 180 30 420 90"  stroke="#bbb" stroke-width="1.4" stroke-dasharray="5 7" fill="none"/>
       <path d="M 260 40 Q 420 0 520 130"  stroke="#bbb" stroke-width="1.4" stroke-dasharray="5 7" fill="none"/>
       <path d="M 420 90 Q 530 180 510 300" stroke="#bbb" stroke-width="1.2" stroke-dasharray="5 7" fill="none"/>
     </svg>
 
     <!-- Airplane icons -->
-    <div class="plane plane-1">
+    <div class="absolute top-[80px] left-[20px] w-[52px] z-[1] pointer-events-none opacity-70 animate-driftPlane1" style="transform:rotate(-25deg)">
       <svg viewBox="0 0 52 28" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 14L50 4L42 14L50 24L2 14Z" fill="#bbb"/>
         <path d="M2 14L18 11V17Z" fill="#ccc"/>
@@ -61,7 +171,7 @@
         <path d="M32 21L38 27L41 23Z" fill="#bbb"/>
       </svg>
     </div>
-    <div class="plane plane-2">
+    <div class="absolute top-[30px] right-[60px] w-[44px] z-[1] pointer-events-none opacity-70 animate-driftPlane2" style="transform:rotate(-10deg)">
       <svg viewBox="0 0 52 28" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 14L50 4L42 14L50 24L2 14Z" fill="#bbb"/>
         <path d="M2 14L18 11V17Z" fill="#ccc"/>
@@ -69,7 +179,7 @@
         <path d="M32 21L38 27L41 23Z" fill="#bbb"/>
       </svg>
     </div>
-    <div class="plane plane-3">
+    <div class="absolute top-[155px] right-[10px] w-[34px] z-[1] pointer-events-none opacity-70 animate-driftPlane3" style="transform:rotate(18deg)">
       <svg viewBox="0 0 52 28" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 14L50 4L42 14L50 24L2 14Z" fill="#ccc"/>
         <path d="M2 14L18 11V17Z" fill="#ddd"/>
@@ -79,24 +189,26 @@
     </div>
 
     <!-- Orange semicircle -->
-    <div class="orange-semi"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[430px] h-[230px] bg-orange rounded-t-[430px] z-[2] max-md:w-[320px] max-md:h-[170px] max-md:rounded-t-[320px]"></div>
 
-    <!-- Traveller photo — exported from Figma -->
-    <img class="traveller-photo" src="Assets/tourist-with-thumb-up__1_-removebg 1 (1).png" alt="Happy traveller with luggage"/>
+    <!-- Traveller photo -->
+    <img class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[430px] h-auto object-contain object-bottom z-[3] drop-shadow-xl max-md:w-[320px]"
+         src="Assets/tourist-with-thumb-up__1_-removebg 1 (1).png"
+         alt="Happy traveller with luggage"/>
 
     <!-- Floating card: Best Tour Awards -->
-    <div class="float-card card-awards">
-      <div class="card-icon awards-icon">🏆</div>
-      <div class="card-text">
-        <strong>Best Tour</strong>
-        <span>Awards</span>
+    <div class="absolute top-[105px] -left-[10px] bg-white rounded-xl2 px-[18px] py-[14px] flex items-center gap-3 shadow-md2 z-10 whitespace-nowrap animate-floatA">
+      <div class="w-11 h-11 rounded-[10px] bg-[#fff8ee] flex items-center justify-center text-2xl shrink-0">🏆</div>
+      <div class="flex flex-col gap-[2px]">
+        <strong class="text-[0.9rem] font-bold text-dark block">Best Tour</strong>
+        <span class="text-[0.75rem] text-muted">Awards</span>
       </div>
     </div>
 
     <!-- Floating card: Explore -->
-    <div class="float-card card-explore">
-      <div class="card-icon map-icon">
-        <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+    <div class="absolute top-[220px] -right-[20px] bg-white rounded-xl2 px-[18px] py-[14px] flex items-center gap-3 shadow-md2 z-10 whitespace-nowrap animate-floatB">
+      <div class="w-11 h-11 rounded-[10px] bg-[#f0f4ff] flex items-center justify-center shrink-0">
+        <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7">
           <path d="M18 3C12.48 3 8 7.48 8 13c0 8.25 10 20 10 20s10-11.75 10-20c0-5.52-4.48-10-10-10z" fill="#EA4335"/>
           <circle cx="18" cy="13" r="4" fill="#fff"/>
           <path d="M18 3C15.5 3 13.2 4.2 11.6 6h12.8C22.8 4.2 20.5 3 18 3z" fill="#FBBC05"/>
@@ -104,18 +216,18 @@
           <path d="M24.4 6H11.6L9.6 18.4C11.2 22 14.3 24.5 18 24.5s6.8-2.5 8.4-6.1L24.4 6z" fill="#4285F4"/>
         </svg>
       </div>
-      <div class="card-text">
-        <strong>Explore</strong>
-        <span>Every corner of<br/>the world with us</span>
+      <div class="flex flex-col gap-[2px]">
+        <strong class="text-[0.9rem] font-bold text-dark block">Explore</strong>
+        <span class="text-[0.75rem] text-muted leading-[1.4]">Every corner of<br/>the world with us</span>
       </div>
     </div>
 
     <!-- Floating card: 27K Reviews -->
-    <div class="float-card card-reviews">
-      <div class="card-icon star-icon">⭐</div>
-      <div class="card-text">
-        <strong>27K</strong>
-        <span>Customer Reviewd</span>
+    <div class="absolute bottom-[140px] -left-[30px] bg-white rounded-xl2 px-[18px] py-[14px] flex items-center gap-3 shadow-md2 z-10 whitespace-nowrap animate-floatC">
+      <div class="w-11 h-11 rounded-[10px] bg-[#fffbe6] flex items-center justify-center text-2xl shrink-0">⭐</div>
+      <div class="flex flex-col gap-[2px]">
+        <strong class="text-[0.9rem] font-bold text-dark block">27K</strong>
+        <span class="text-[0.75rem] text-muted">Customer Reviewd</span>
       </div>
     </div>
 
@@ -125,32 +237,39 @@
 <!-- ════════════════════════════
      SEARCH BAR
 ════════════════════════════ -->
-<section class="search-bar">
-  <div class="search-inner">
-    <div class="search-field">
-      <label>Location ▾</label>
-      <p>Where are you going</p>
+<section class="px-[6vw] pb-[60px]">
+  <div class="flex items-center justify-between bg-white rounded-xl2 shadow-md2 px-8 py-6 max-w-[900px] mx-auto gap-5 animate-fadeUpLate max-md:flex-col max-md:items-stretch max-md:p-5">
+    <div class="flex flex-col flex-1 px-7 border-r border-[#e8e8e8] cursor-pointer rounded-lg hover:bg-[#fff0e8] transition-colors first:pl-0 max-md:border-r-0 max-md:border-b max-md:border-[#e8e8e8] max-md:py-[10px] max-md:px-0">
+      <label class="text-[0.88rem] font-semibold text-dark mb-1 cursor-pointer">Location ▾</label>
+      <p class="text-[0.8rem] text-muted">Where are you going</p>
     </div>
-    <div class="search-field">
-      <label>Date ▾</label>
-      <p>When you will go</p>
+    <div class="flex flex-col flex-1 px-7 border-r border-[#e8e8e8] cursor-pointer rounded-lg hover:bg-[#fff0e8] transition-colors max-md:border-r-0 max-md:border-b max-md:border-[#e8e8e8] max-md:py-[10px] max-md:px-0">
+      <label class="text-[0.88rem] font-semibold text-dark mb-1 cursor-pointer">Date ▾</label>
+      <p class="text-[0.8rem] text-muted">When you will go</p>
     </div>
-    <div class="search-field">
-      <label>Guest ▾</label>
-      <p>Number of Guest</p>
+    <div class="flex flex-col flex-1 px-7 cursor-pointer rounded-lg hover:bg-[#fff0e8] transition-colors max-md:py-[10px] max-md:px-0">
+      <label class="text-[0.88rem] font-semibold text-dark mb-1 cursor-pointer">Guest ▾</label>
+      <p class="text-[0.8rem] text-muted">Number of Guest</p>
     </div>
-    <button class="explore-btn">Explore Now</button>
+    <button class="px-[30px] py-[14px] bg-orange border-none rounded-[10px] text-white font-sans text-[0.95rem] font-semibold cursor-pointer whitespace-nowrap shadow-orange shrink-0 hover:bg-orange-dark hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(242,101,34,0.45)] transition-all duration-200">
+      Explore Now
+    </button>
   </div>
 </section>
 
 <!-- ════════════════════════════
      THINGS YOU NEED TO DO
 ════════════════════════════ -->
-<section class="things-section">
-  <div class="things-header">
-    <h2>Things you need <span>to do</span></h2>
-    <p>We ensure that you'll embark on a perfectly planned, safe vacation at a price you can afford.</p>
-    <svg class="globe-deco" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+<section class="px-[6vw] py-[80px] bg-light-bg relative overflow-hidden">
+  <div class="flex flex-col items-center text-center relative mb-14">
+    <h2 class="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold text-dark tracking-tight leading-[1.2]">
+      Things you need <span class="text-orange italic">to do</span>
+    </h2>
+    <p class="mt-4 text-[0.95rem] text-muted leading-[1.75] max-w-[380px]">
+      We ensure that you'll embark on a perfectly planned, safe vacation at a price you can afford.
+    </p>
+    <!-- Globe decoration -->
+    <svg class="absolute top-[-10px] right-[calc(6vw+40px)] w-[130px] h-[130px] pointer-events-none max-md:hidden" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="72" cy="80" r="38" stroke="#ccc" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
       <path d="M34 80 Q72 62 110 80" stroke="#ccc" stroke-width="1.2" fill="none"/>
       <path d="M34 80 Q72 98 110 80" stroke="#ccc" stroke-width="1.2" fill="none"/>
@@ -171,10 +290,11 @@
     </svg>
   </div>
 
-  <div class="cards-grid">
-    <div class="card">
-      <div class="card-icon">
-        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="grid grid-cols-3 gap-7 max-w-[1000px] mx-auto max-lg:grid-cols-2 max-md:grid-cols-1 max-md:max-w-[420px]">
+    <!-- Card 1 -->
+    <div class="card-circle bg-white rounded-[18px] px-8 py-[38px] relative overflow-hidden shadow-sm2 hover:-translate-y-[6px] hover:shadow-md2 transition-all duration-300 cursor-default">
+      <div class="w-14 h-14 mb-9">
+        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
           <rect x="8" y="6" width="34" height="40" rx="4" stroke="#f26522" stroke-width="2" fill="none"/>
           <rect x="14" y="14" width="16" height="2.5" rx="1.2" fill="#f26522"/>
           <rect x="14" y="20" width="22" height="2.5" rx="1.2" fill="#f26522"/>
@@ -183,12 +303,13 @@
           <circle cx="36" cy="34" r="3" stroke="#f26522" stroke-width="2" fill="none"/>
         </svg>
       </div>
-      <h3>Sign Up</h3>
-      <p>Completes all the work associated with planning and processing</p>
+      <h3 class="text-[1.1rem] font-bold text-dark mb-3">Sign Up</h3>
+      <p class="text-[0.875rem] text-muted leading-[1.75] max-w-[220px]">Completes all the work associated with planning and processing</p>
     </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Card 2 -->
+    <div class="card-circle bg-white rounded-[18px] px-8 py-[38px] relative overflow-hidden shadow-sm2 hover:-translate-y-[6px] hover:shadow-md2 transition-all duration-300 cursor-default">
+      <div class="w-14 h-14 mb-9">
+        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
           <rect x="6" y="16" width="38" height="26" rx="5" stroke="#4a90d9" stroke-width="2" fill="none"/>
           <path d="M6 24 L44 24" stroke="#4a90d9" stroke-width="2"/>
           <rect x="32" y="28" width="12" height="8" rx="3" stroke="#4a90d9" stroke-width="2" fill="none"/>
@@ -197,19 +318,20 @@
           <path d="M19 10 L22 10" stroke="#4a90d9" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </div>
-      <h3>Worth of Money</h3>
-      <p>After successful access then book from exclusive deals &amp; pricing</p>
+      <h3 class="text-[1.1rem] font-bold text-dark mb-3">Worth of Money</h3>
+      <p class="text-[0.875rem] text-muted leading-[1.75] max-w-[220px]">After successful access then book from exclusive deals &amp; pricing</p>
     </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Card 3 -->
+    <div class="card-circle bg-white rounded-[18px] px-8 py-[38px] relative overflow-hidden shadow-sm2 hover:-translate-y-[6px] hover:shadow-md2 transition-all duration-300 cursor-default">
+      <div class="w-14 h-14 mb-9">
+        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
           <path d="M28 8C20.27 8 14 14.27 14 22c0 11 14 26 14 26s14-15 14-26c0-7.73-6.27-14-14-14z" stroke="#e6a817" stroke-width="2" fill="none"/>
           <circle cx="28" cy="22" r="5" stroke="#e6a817" stroke-width="2" fill="none"/>
           <path d="M25.5 21 Q28 18.5 30.5 21 Q33 23.5 28 27 Q23 23.5 25.5 21Z" stroke="#e6a817" stroke-width="1.4" fill="none"/>
         </svg>
       </div>
-      <h3>Exciting Travel</h3>
-      <p>Start and explore a wide range of exciting travel experience.</p>
+      <h3 class="text-[1.1rem] font-bold text-dark mb-3">Exciting Travel</h3>
+      <p class="text-[0.875rem] text-muted leading-[1.75] max-w-[220px]">Start and explore a wide range of exciting travel experience.</p>
     </div>
   </div>
 </section>
@@ -217,66 +339,106 @@
 <!-- ════════════════════════════
      EXCLUSIVE DEALS
 ════════════════════════════ -->
-<section class="deals-section">
-  <div class="section-header">
-    <h2>Exclusive <span>deals &amp; discounts</span></h2>
-    <p>Discover our fantastic early booking discounts<br/>&amp; start planning your journey.</p>
+<section class="px-[6vw] py-[80px] bg-white">
+  <div class="text-center mb-[50px]">
+    <h2 class="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold text-dark tracking-tight leading-[1.2]">
+      Exclusive <span class="text-orange italic">deals &amp; discounts</span>
+    </h2>
+    <p class="mt-[14px] text-[0.93rem] text-muted leading-[1.75]">Discover our fantastic early booking discounts<br/>&amp; start planning your journey.</p>
   </div>
-  <div class="deals-slider">
-    <div class="deal-card">
-      <div class="deal-img">
-        <img src="https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=400&q=80" alt="Madrid"/>
+
+  <div class="grid grid-cols-4 gap-6 max-w-[1100px] mx-auto max-lg:grid-cols-2 max-md:grid-cols-1 max-md:max-w-[420px]">
+    <!-- Madrid -->
+    <div class="rounded-xl2 overflow-hidden border border-[#efefef] bg-white shadow-sm2 hover:-translate-y-[5px] hover:shadow-md2 transition-all duration-300">
+      <div class="relative h-[210px] overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=400&q=80" alt="Madrid" class="hover:scale-[1.06] transition-transform duration-400"/>
       </div>
-      <div class="deal-info">
-        <div class="deal-title"><h3>Madrid</h3><span class="rating"><span class="star">★</span> 4.8</span></div>
-        <div class="deal-price"><span class="location">📍 Spain</span><span class="old-price">$950</span><span class="new-price">$850</span></div>
-      </div>
-    </div>
-    <div class="deal-card active">
-      <div class="deal-img">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Firenze"/>
-        <button class="book-btn">Book Now</button>
-      </div>
-      <div class="deal-info">
-        <div class="deal-title"><h3>Firenze</h3><span class="rating"><span class="star">★</span> 4.5</span></div>
-        <div class="deal-price"><span class="location">📍 Italy</span><span class="old-price">$850</span><span class="new-price">$750</span></div>
-      </div>
-    </div>
-    <div class="deal-card">
-      <div class="deal-img">
-        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=400&q=80" alt="Paris"/>
-      </div>
-      <div class="deal-info">
-        <div class="deal-title"><h3>Paris</h3><span class="rating"><span class="star">★</span> 4.4</span></div>
-        <div class="deal-price"><span class="location">📍 France</span><span class="old-price">$699</span><span class="new-price">$599</span></div>
+      <div class="px-[18px] py-[16px]">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-[1.05rem] font-bold">Madrid</h3>
+          <span class="flex items-center gap-1 text-[0.85rem] font-semibold"><span class="text-[#f5c518]">★</span> 4.8</span>
+        </div>
+        <div class="flex items-center gap-[10px] text-[0.85rem]">
+          <span class="text-muted flex-1">📍 Spain</span>
+          <span class="text-[#bbb] line-through">$950</span>
+          <span class="text-orange font-bold">$850</span>
+        </div>
       </div>
     </div>
-    <div class="deal-card">
-      <div class="deal-img">
-        <img src="https://images.unsplash.com/photo-1520986606214-8b456906c813?w=400&q=80" alt="London"/>
+    <!-- Firenze (active) -->
+    <div class="rounded-xl2 overflow-hidden border border-[#efefef] bg-white shadow-deal hover:-translate-y-[5px] transition-all duration-300">
+      <div class="relative h-[210px] overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Firenze" class="hover:scale-[1.06] transition-transform duration-400"/>
+        <button class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-orange text-white border-none rounded-full px-7 py-3 font-sans text-[0.95rem] font-semibold cursor-pointer shadow-[0_4px_18px_rgba(242,101,34,0.45)] z-[2] hover:scale-105 transition-transform duration-200">Book Now</button>
       </div>
-      <div class="deal-info">
-        <div class="deal-title"><h3>London</h3><span class="rating"><span class="star">★</span> 4.8</span></div>
-        <div class="deal-price"><span class="location">📍 UK</span><span class="old-price">$850</span><span class="new-price">$850</span></div>
+      <div class="px-[18px] py-[16px]">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-[1.05rem] font-bold">Firenze</h3>
+          <span class="flex items-center gap-1 text-[0.85rem] font-semibold"><span class="text-[#f5c518]">★</span> 4.5</span>
+        </div>
+        <div class="flex items-center gap-[10px] text-[0.85rem]">
+          <span class="text-muted flex-1">📍 Italy</span>
+          <span class="text-[#bbb] line-through">$850</span>
+          <span class="text-orange font-bold">$750</span>
+        </div>
+      </div>
+    </div>
+    <!-- Paris -->
+    <div class="rounded-xl2 overflow-hidden border border-[#efefef] bg-white shadow-sm2 hover:-translate-y-[5px] hover:shadow-md2 transition-all duration-300">
+      <div class="relative h-[210px] overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=400&q=80" alt="Paris" class="hover:scale-[1.06] transition-transform duration-400"/>
+      </div>
+      <div class="px-[18px] py-[16px]">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-[1.05rem] font-bold">Paris</h3>
+          <span class="flex items-center gap-1 text-[0.85rem] font-semibold"><span class="text-[#f5c518]">★</span> 4.4</span>
+        </div>
+        <div class="flex items-center gap-[10px] text-[0.85rem]">
+          <span class="text-muted flex-1">📍 France</span>
+          <span class="text-[#bbb] line-through">$699</span>
+          <span class="text-orange font-bold">$599</span>
+        </div>
+      </div>
+    </div>
+    <!-- London -->
+    <div class="rounded-xl2 overflow-hidden border border-[#efefef] bg-white shadow-sm2 hover:-translate-y-[5px] hover:shadow-md2 transition-all duration-300">
+      <div class="relative h-[210px] overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1520986606214-8b456906c813?w=400&q=80" alt="London" class="hover:scale-[1.06] transition-transform duration-400"/>
+      </div>
+      <div class="px-[18px] py-[16px]">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-[1.05rem] font-bold">London</h3>
+          <span class="flex items-center gap-1 text-[0.85rem] font-semibold"><span class="text-[#f5c518]">★</span> 4.8</span>
+        </div>
+        <div class="flex items-center gap-[10px] text-[0.85rem]">
+          <span class="text-muted flex-1">📍 UK</span>
+          <span class="text-[#bbb] line-through">$850</span>
+          <span class="text-orange font-bold">$850</span>
+        </div>
       </div>
     </div>
   </div>
-  <div class="slider-arrows">
-    <button class="arrow-btn">&#8592;</button>
-    <button class="arrow-btn active">&#8594;</button>
+
+  <!-- Arrows -->
+  <div class="flex justify-center gap-[14px] mt-10">
+    <button class="w-11 h-11 rounded-full border-[1.5px] border-[#ccc] bg-white text-[1.1rem] cursor-pointer flex items-center justify-center text-dark hover:bg-orange hover:border-orange hover:text-white transition-all duration-200">&#8592;</button>
+    <button class="w-11 h-11 rounded-full bg-orange border-[1.5px] border-orange text-white text-[1.1rem] cursor-pointer flex items-center justify-center hover:bg-orange-dark hover:border-orange-dark transition-all duration-200">&#8594;</button>
   </div>
 </section>
 
 <!-- ════════════════════════════
      BEST VACATION PLAN
 ════════════════════════════ -->
-<section class="vacation-section">
-  <div class="vacation-header">
-    <div class="vacation-title-block">
-      <h2>Best <span>vacation plan</span></h2>
-      <p>Plan your perfect vacation with our travel agency. Choose<br/>among hundreds of all-inclusive offers!</p>
+<section class="px-[6vw] py-[80px] bg-light-bg">
+  <div class="flex items-start gap-6 mb-11 flex-wrap">
+    <div class="flex-1 min-w-[240px]">
+      <h2 class="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold text-dark tracking-tight leading-[1.2]">
+        Best <span class="text-orange italic">vacation plan</span>
+      </h2>
+      <p class="mt-[14px] text-[0.93rem] text-muted leading-[1.75]">Plan your perfect vacation with our travel agency. Choose<br/>among hundreds of all-inclusive offers!</p>
     </div>
-    <svg class="palm-deco" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Palm deco -->
+    <svg class="w-[110px] h-[90px] shrink-0 mt-1" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M40 90 Q42 60 50 40" stroke="#ccc" stroke-width="2" fill="none"/>
       <path d="M50 40 Q30 20 10 30 Q25 20 40 35" stroke="#ccc" stroke-width="1.8" fill="none"/>
       <path d="M50 40 Q55 15 75 10 Q65 20 55 38" stroke="#ccc" stroke-width="1.8" fill="none"/>
@@ -284,31 +446,50 @@
       <path d="M90 42 Q75 22 58 28 Q72 18 88 36" stroke="#ccc" stroke-width="1.8" fill="none"/>
       <path d="M90 42 Q100 18 115 15 Q105 24 92 42" stroke="#ccc" stroke-width="1.8" fill="none"/>
     </svg>
-    <div class="slider-arrows inline-arrows">
-      <button class="arrow-btn">&#8592;</button>
-      <button class="arrow-btn active">&#8594;</button>
+    <div class="flex items-center gap-[14px] ml-auto self-center max-md:ml-0">
+      <button class="w-11 h-11 rounded-full border-[1.5px] border-[#ccc] bg-white text-[1.1rem] cursor-pointer flex items-center justify-center text-dark hover:bg-orange hover:border-orange hover:text-white transition-all duration-200">&#8592;</button>
+      <button class="w-11 h-11 rounded-full bg-orange border-[1.5px] border-orange text-white text-[1.1rem] cursor-pointer flex items-center justify-center hover:bg-orange-dark hover:border-orange-dark transition-all duration-200">&#8594;</button>
     </div>
   </div>
-  <div class="vacation-grid">
-    <div class="vac-card">
-      <div class="vac-img"><img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=500&q=80" alt="Rome"/></div>
-      <div class="vac-info">
-        <div class="vac-top"><h3>Rome, Italy</h3><span class="vac-price">$5,42k</span></div>
-        <div class="vac-bottom"><span class="trip-days">✈ 10 Days Trip</span><span class="rating"><span class="star">★</span> 4.8</span></div>
+
+  <div class="grid grid-cols-3 gap-[26px] max-w-[1100px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:max-w-[420px] max-md:mx-auto">
+    <div class="bg-white rounded-xl2 overflow-hidden shadow-sm2 border border-[#efefef] hover:-translate-y-[5px] hover:shadow-md2 transition-all duration-300">
+      <div class="h-[240px] overflow-hidden"><img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=500&q=80" alt="Rome" class="hover:scale-[1.06] transition-transform duration-400"/></div>
+      <div class="px-5 pt-[18px] pb-5">
+        <div class="flex justify-between items-center mb-[10px]">
+          <h3 class="text-[1.05rem] font-bold">Rome, Italy</h3>
+          <span class="text-orange font-bold text-base">$5,42k</span>
+        </div>
+        <div class="flex justify-between items-center text-[0.82rem] text-muted">
+          <span class="text-orange font-medium">✈ 10 Days Trip</span>
+          <span class="flex items-center gap-1 font-semibold text-dark"><span class="text-[#f5c518]">★</span> 4.8</span>
+        </div>
       </div>
     </div>
-    <div class="vac-card">
-      <div class="vac-img"><img src="https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=500&q=80" alt="London"/></div>
-      <div class="vac-info">
-        <div class="vac-top"><h3>London, UK</h3><span class="vac-price">$2,42k</span></div>
-        <div class="vac-bottom"><span class="trip-days">✈ 07 Days Trip</span><span class="rating"><span class="star">★</span> 4.7</span></div>
+    <div class="bg-white rounded-xl2 overflow-hidden shadow-sm2 border border-[#efefef] hover:-translate-y-[5px] hover:shadow-md2 transition-all duration-300">
+      <div class="h-[240px] overflow-hidden"><img src="https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=500&q=80" alt="London" class="hover:scale-[1.06] transition-transform duration-400"/></div>
+      <div class="px-5 pt-[18px] pb-5">
+        <div class="flex justify-between items-center mb-[10px]">
+          <h3 class="text-[1.05rem] font-bold">London, UK</h3>
+          <span class="text-orange font-bold text-base">$2,42k</span>
+        </div>
+        <div class="flex justify-between items-center text-[0.82rem] text-muted">
+          <span class="text-orange font-medium">✈ 07 Days Trip</span>
+          <span class="flex items-center gap-1 font-semibold text-dark"><span class="text-[#f5c518]">★</span> 4.7</span>
+        </div>
       </div>
     </div>
-    <div class="vac-card">
-      <div class="vac-img"><img src="https://images.unsplash.com/photo-1589158015791-45a9a6930c27?w=500&q=80" alt="Osaka"/></div>
-      <div class="vac-info">
-        <div class="vac-top"><h3>Osaka, Japan</h3><span class="vac-price">$5,42k</span></div>
-        <div class="vac-bottom"><span class="trip-days">✈ 10 Days Trip</span><span class="rating"><span class="star">★</span> 4.8</span></div>
+    <div class="bg-white rounded-xl2 overflow-hidden shadow-sm2 border border-[#efefef] hover:-translate-y-[5px] hover:shadow-md2 transition-all duration-300">
+      <div class="h-[240px] overflow-hidden"><img src="https://images.unsplash.com/photo-1589158015791-45a9a6930c27?w=500&q=80" alt="Osaka" class="hover:scale-[1.06] transition-transform duration-400"/></div>
+      <div class="px-5 pt-[18px] pb-5">
+        <div class="flex justify-between items-center mb-[10px]">
+          <h3 class="text-[1.05rem] font-bold">Osaka, Japan</h3>
+          <span class="text-orange font-bold text-base">$5,42k</span>
+        </div>
+        <div class="flex justify-between items-center text-[0.82rem] text-muted">
+          <span class="text-orange font-medium">✈ 10 Days Trip</span>
+          <span class="flex items-center gap-1 font-semibold text-dark"><span class="text-[#f5c518]">★</span> 4.8</span>
+        </div>
       </div>
     </div>
   </div>
@@ -317,17 +498,21 @@
 <!-- ════════════════════════════
      TESTIMONIALS
 ════════════════════════════ -->
-<section class="testimonial-section">
-  <div class="testimonial-left">
-    <h2>What people say<br/><span>about us.</span></h2>
-    <p>Our Clients send us bunch of smilies with our services and we love them.</p>
-    <div class="slider-arrows">
-      <button class="arrow-btn">&#8592;</button>
-      <button class="arrow-btn active">&#8594;</button>
+<section class="px-[6vw] py-[80px] bg-[#f0f4f9] flex gap-[60px] items-center max-md:flex-col">
+  <div class="flex-none w-[280px] max-md:flex-auto">
+    <h2 class="font-playfair text-[clamp(1.8rem,2.5vw,2.2rem)] font-extrabold leading-[1.25] mb-4">
+      What people say<br/><span class="text-orange italic">about us.</span>
+    </h2>
+    <p class="text-[0.9rem] text-muted leading-[1.75] mb-7">Our Clients send us bunch of smilies with our services and we love them.</p>
+    <div class="flex gap-[14px]">
+      <button class="w-11 h-11 rounded-full border-[1.5px] border-[#ccc] bg-white text-[1.1rem] cursor-pointer flex items-center justify-center text-dark hover:bg-orange hover:border-orange hover:text-white transition-all duration-200">&#8592;</button>
+      <button class="w-11 h-11 rounded-full bg-orange border-[1.5px] border-orange text-white text-[1.1rem] cursor-pointer flex items-center justify-center hover:bg-orange-dark hover:border-orange-dark transition-all duration-200">&#8594;</button>
     </div>
   </div>
-  <div class="testimonial-right">
-    <svg class="plane-deco" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <div class="flex-1 relative min-h-[260px]">
+    <!-- Plane deco -->
+    <svg class="absolute -top-[30px] right-0 w-[160px] h-[120px] pointer-events-none" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="110" cy="70" r="42" stroke="#ddd" stroke-width="1.2" stroke-dasharray="4 5" fill="none"/>
       <g transform="translate(55,20) rotate(-20)">
         <path d="M0 6 L26 2 L22 6 L26 10 L0 6Z" fill="#ccc"/>
@@ -340,17 +525,21 @@
         <path d="M12 7 L15 10 L17 8Z" fill="#ccc"/>
       </g>
     </svg>
-    <div class="test-card active-card">
-      <div class="test-avatar">
-        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mike Taylor"/>
+
+    <!-- Active testimonial card -->
+    <div class="bg-white rounded-xl2 px-8 pt-11 pb-7 shadow-md2 max-w-[480px] relative z-[2]">
+      <div class="absolute -top-7 left-7 w-14 h-14 rounded-full overflow-hidden border-[3px] border-white shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mike Taylor" class="w-full h-full object-cover"/>
       </div>
-      <p class="test-quote">"On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no."</p>
-      <strong class="test-name">Mike Taylor</strong>
-      <span class="test-location">Lahore, Pakistan</span>
+      <p class="text-[0.93rem] leading-[1.8] text-[#444] mb-4">"On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no."</p>
+      <strong class="block text-[0.95rem] font-bold text-dark">Mike Taylor</strong>
+      <span class="text-[0.8rem] text-muted">Lahore, Pakistan</span>
     </div>
-    <div class="test-card ghost-card">
-      <strong class="test-name">Chris Thomas</strong>
-      <span class="test-location">CEO of Red Button</span>
+
+    <!-- Ghost card -->
+    <div class="absolute -bottom-[18px] right-0 w-[320px] bg-[#f8f8f8] rounded-xl2 px-6 py-5 shadow-sm2 z-[1] opacity-75 max-md:static max-md:w-full max-md:mt-4">
+      <strong class="block text-[0.95rem] font-bold text-dark">Chris Thomas</strong>
+      <span class="text-[0.8rem] text-muted">CEO of Red Button</span>
     </div>
   </div>
 </section>
@@ -358,46 +547,51 @@
 <!-- ════════════════════════════
      LATEST BLOG
 ════════════════════════════ -->
-<section class="blog-section">
-  <div class="section-header">
-    <h2>Get update with <span>latest blog</span></h2>
+<section class="px-[6vw] py-[80px] bg-white">
+  <div class="text-center mb-[50px]">
+    <h2 class="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold text-dark tracking-tight leading-[1.2]">
+      Get update with <span class="text-orange italic">latest blog</span>
+    </h2>
   </div>
-  <div class="blog-grid">
-    <div class="blog-card">
-      <div class="blog-img"><img src="https://images.unsplash.com/photo-1467226632440-65f0b4957563?w=400&q=80" alt="Blog 1"/></div>
-      <h4>The Amazing Difference a Year of Travelling .</h4>
-      <span class="blog-date">July 27, 2021</span>
+
+  <div class="grid grid-cols-4 gap-6 max-w-[1100px] mx-auto max-lg:grid-cols-2 max-md:grid-cols-1 max-md:max-w-[420px]">
+    <div class="cursor-pointer hover:-translate-y-1 transition-transform duration-300">
+      <div class="h-[200px] rounded-2xl overflow-hidden mb-4"><img src="https://images.unsplash.com/photo-1467226632440-65f0b4957563?w=400&q=80" alt="Blog 1" class="hover:scale-[1.06] transition-transform duration-400"/></div>
+      <h4 class="text-[0.93rem] font-semibold text-dark leading-[1.55] mb-2">The Amazing Difference a Year of Travelling .</h4>
+      <span class="text-[0.8rem] text-muted">July 27, 2021</span>
     </div>
-    <div class="blog-card">
-      <div class="blog-img"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80" alt="Blog 2"/></div>
-      <h4>Travel far enough, you meet yourself.</h4>
-      <span class="blog-date">July 27, 2021</span>
+    <div class="cursor-pointer hover:-translate-y-1 transition-transform duration-300">
+      <div class="h-[200px] rounded-2xl overflow-hidden mb-4"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80" alt="Blog 2" class="hover:scale-[1.06] transition-transform duration-400"/></div>
+      <h4 class="text-[0.93rem] font-semibold text-dark leading-[1.55] mb-2">Travel far enough, you meet yourself.</h4>
+      <span class="text-[0.8rem] text-muted">July 27, 2021</span>
     </div>
-    <div class="blog-card">
-      <div class="blog-img"><img src="https://images.unsplash.com/photo-1516026672322-bc52d61a4d4a?w=400&q=80" alt="Blog 3"/></div>
-      <h4>How to Save Money While Visiting Africa .</h4>
-      <span class="blog-date">July 27, 2021</span>
+    <div class="cursor-pointer hover:-translate-y-1 transition-transform duration-300">
+      <div class="h-[200px] rounded-2xl overflow-hidden mb-4"><img src="https://images.unsplash.com/photo-1516026672322-bc52d61a4d4a?w=400&q=80" alt="Blog 3" class="hover:scale-[1.06] transition-transform duration-400"/></div>
+      <h4 class="text-[0.93rem] font-semibold text-dark leading-[1.55] mb-2">How to Save Money While Visiting Africa .</h4>
+      <span class="text-[0.8rem] text-muted">July 27, 2021</span>
     </div>
-    <div class="blog-card">
-      <div class="blog-img"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80" alt="Blog 4"/></div>
-      <h4>Reflections on 5 Months of Travel: Time to Hang</h4>
-      <span class="blog-date">July 27, 2021</span>
+    <div class="cursor-pointer hover:-translate-y-1 transition-transform duration-300">
+      <div class="h-[200px] rounded-2xl overflow-hidden mb-4"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80" alt="Blog 4" class="hover:scale-[1.06] transition-transform duration-400"/></div>
+      <h4 class="text-[0.93rem] font-semibold text-dark leading-[1.55] mb-2">Reflections on 5 Months of Travel: Time to Hang</h4>
+      <span class="text-[0.8rem] text-muted">July 27, 2021</span>
     </div>
   </div>
-  <div class="blog-dots">
-    <span class="dot"></span>
-    <span class="dot active"></span>
-    <span class="dot"></span>
+
+  <div class="flex justify-center gap-2 mt-9">
+    <span class="w-[9px] h-[9px] rounded-full bg-[#ddd] cursor-pointer"></span>
+    <span class="w-[9px] h-[9px] rounded-full bg-orange cursor-pointer"></span>
+    <span class="w-[9px] h-[9px] rounded-full bg-[#ddd] cursor-pointer"></span>
   </div>
 </section>
 
 <!-- ════════════════════════════
      SUBSCRIBE
 ════════════════════════════ -->
-<section class="subscribe-section">
-  <div class="subscribe-box">
-    <div class="subscribe-rings"></div>
-    <svg class="subscribe-palm" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+<section class="px-[6vw] py-[50px] bg-light-bg">
+  <div class="bg-orange rounded-3xl px-[6vw] py-[60px] text-center relative overflow-hidden max-w-[900px] mx-auto">
+    <div class="subscribe-rings absolute"></div>
+    <!-- Palm deco -->
+    <svg class="absolute top-[10px] right-[30px] w-[90px] h-[80px] pointer-events-none" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M35 88 Q37 58 45 38" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
       <path d="M45 38 Q28 18 8 26 Q22 16 40 32" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" fill="none"/>
       <path d="M45 38 Q50 12 70 8 Q58 18 48 36" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" fill="none"/>
@@ -405,13 +599,13 @@
       <path d="M80 42 Q65 22 48 28 Q62 18 78 36" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" fill="none"/>
       <path d="M80 42 Q90 18 100 15 Q92 24 82 42" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" fill="none"/>
     </svg>
-    <h2>Subscribe and get exclusive<br/>deals &amp; offer</h2>
-    <div class="subscribe-form">
-      <div class="email-input">
-        <span class="email-icon">✉</span>
-        <input type="email" placeholder="Enter your mail"/>
-      </div>
-      <button class="subscribe-btn">Subscribe</button>
+    <h2 class="font-playfair text-[clamp(1.4rem,2.5vw,2rem)] font-bold text-white leading-[1.4] mb-8 relative z-[1]">
+      Subscribe and get exclusive<br/>deals &amp; offer
+    </h2>
+    <div class="flex items-center bg-white rounded-full py-[6px] pl-5 pr-[6px] max-w-[520px] mx-auto gap-2 relative z-[1]">
+      <span class="text-base text-[#bbb] shrink-0">✉</span>
+      <input type="email" placeholder="Enter your mail" class="border-none outline-none font-sans text-[0.9rem] text-dark w-full bg-transparent"/>
+      <button class="bg-orange text-white border-none rounded-full px-7 py-3 font-sans text-[0.9rem] font-semibold cursor-pointer whitespace-nowrap shrink-0 hover:bg-orange-dark transition-colors duration-200">Subscribe</button>
     </div>
   </div>
 </section>
@@ -419,40 +613,40 @@
 <!-- ════════════════════════════
      FOOTER
 ════════════════════════════ -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <h3 class="brand-name">Trabook 🧳</h3>
-      <p>Book your trip in minute, get full<br/>Control for much longer.</p>
-      <div class="social-icons">
-        <a href="#" class="social-icon">f</a>
-        <a href="#" class="social-icon active">📷</a>
-        <a href="#" class="social-icon">𝕏</a>
+<footer class="px-[6vw] pt-[60px] bg-light-bg">
+  <div class="flex gap-[60px] flex-wrap pb-12 border-b border-[#e0e0e0] max-md:flex-col max-md:gap-9">
+    <div class="flex-none w-[240px]">
+      <h3 class="font-playfair text-[1.3rem] font-extrabold text-dark mb-3">Trabook 🧳</h3>
+      <p class="text-[0.88rem] text-muted leading-[1.75] mb-5">Book your trip in minute, get full<br/>Control for much longer.</p>
+      <div class="flex gap-[10px]">
+        <a href="#" class="w-10 h-10 rounded-full border-[1.5px] border-[#ddd] flex items-center justify-center text-[0.85rem] text-dark no-underline bg-white hover:bg-orange hover:border-orange hover:text-white transition-all duration-200">f</a>
+        <a href="#" class="w-10 h-10 rounded-full bg-orange border-[1.5px] border-orange flex items-center justify-center text-[0.85rem] text-white no-underline transition-all duration-200">📷</a>
+        <a href="#" class="w-10 h-10 rounded-full border-[1.5px] border-[#ddd] flex items-center justify-center text-[0.85rem] text-dark no-underline bg-white hover:bg-orange hover:border-orange hover:text-white transition-all duration-200">𝕏</a>
       </div>
     </div>
-    <div class="footer-links">
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="#">About</a>
-        <a href="#">Careers</a>
-        <a href="#">Logistic</a>
-        <a href="#">Privacy &amp; Policy</a>
+    <div class="flex gap-[60px] flex-1 flex-wrap max-md:gap-8">
+      <div class="flex flex-col gap-3 min-w-[120px]">
+        <h4 class="text-[0.95rem] font-bold text-dark mb-1">Company</h4>
+        <a href="#" class="text-[0.88rem] text-muted no-underline hover:text-orange transition-colors">About</a>
+        <a href="#" class="text-[0.88rem] text-muted no-underline hover:text-orange transition-colors">Careers</a>
+        <a href="#" class="text-[0.88rem] text-muted no-underline hover:text-orange transition-colors">Logistic</a>
+        <a href="#" class="text-[0.88rem] text-muted no-underline hover:text-orange transition-colors">Privacy &amp; Policy</a>
       </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="#">Help/FAQ</a>
-        <a href="#">Press</a>
-        <a href="#">Affiliates</a>
+      <div class="flex flex-col gap-3 min-w-[120px]">
+        <h4 class="text-[0.95rem] font-bold text-dark mb-1">Contact</h4>
+        <a href="#" class="text-[0.88rem] text-muted no-underline hover:text-orange transition-colors">Help/FAQ</a>
+        <a href="#" class="text-[0.88rem] text-muted no-underline hover:text-orange transition-colors">Press</a>
+        <a href="#" class="text-[0.88rem] text-muted no-underline hover:text-orange transition-colors">Affiliates</a>
       </div>
-      <div class="footer-col">
-        <h4>More</h4>
-        <a href="#">Press Centre</a>
-        <a href="#">Our Blog</a>
-        <a href="#">Low fare tips</a>
+      <div class="flex flex-col gap-3 min-w-[120px]">
+        <h4 class="text-[0.95rem] font-bold text-dark mb-1">More</h4>
+        <a href="#" class="text-[0.88rem] text-muted no-underline hover:text-orange transition-colors">Press Centre</a>
+        <a href="#" class="text-[0.88rem] text-muted no-underline hover:text-orange transition-colors">Our Blog</a>
+        <a href="#" class="text-[0.88rem] text-muted no-underline hover:text-orange transition-colors">Low fare tips</a>
       </div>
     </div>
   </div>
-  <div class="footer-bottom">
+  <div class="flex justify-between items-center py-[22px] text-[0.83rem] text-muted">
     <span>Copyright, Trabook 2022. All rights reserved.</span>
     <span>Terms &amp; Conditions</span>
   </div>
